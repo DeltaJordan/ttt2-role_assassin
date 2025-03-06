@@ -16,7 +16,7 @@ SWEP.ShowViewModel = true
 SWEP.ShowWorldModel = true
 SWEP.ViewModelBoneMods = {}
 SWEP.EquipMenuData = {
-	type = "ass",
+	type = "item_weapon",
 	desc = "Knife them in the back for an instant kill."
 }
 

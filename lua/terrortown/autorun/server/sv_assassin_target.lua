@@ -46,6 +46,7 @@ local function AssassinTargetDied(ply, attacker, dmgInfo)
 	if IsValid(attacker)
 		and attacker:IsPlayer()
 		and attacker:GetSubRole() == ROLE_ASSASSIN
+		and ply:GetBaseRole() ~= ROLE_TRAITOR
 		and (not attacker.IsGhost or not attacker:IsGhost())
 		and IsValid(killingEntity)
 		and killingEntity:IsWeapon()
