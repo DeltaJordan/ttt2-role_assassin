@@ -11,7 +11,7 @@ L["target_" .. ASSASSIN.name] = "Assassin"
 L["ttt2_desc_" .. ASSASSIN.name] = [[The Assassin needs to win with the traitors!]]
 
 L["ttt2_assassin_target_killed_item"] = "You received {item} for eliminating your target."
-L["ttt2_assassin_target_killed_credits"] = "You received {amount} credit(s) for eliminating your target."
+L["ttt2_assassin_target_killed_credits"] = "You received {amount} credit(s) getting an elimination with the Assassin Knife."
 L["ttt2_assassin_target_killed"] = "You've killed your target!"
 L["ttt2_assassin_chat_reveal"] = "'{playername}' is an Assassin!"
 L["ttt2_assassin_target_died"] = "Your target died..."
@@ -19,6 +19,6 @@ L["ttt2_assassin_target_unavailable"] = "No targetable player available."
 
 -- Convars
 L["label_ttt2_assassin_credit_bonus"] = "Backstab Credit Bonus"
-L["help_ttt2_assassin_credit_bonus"] = "Amount of credits to award an Assassin when killing with the backstab knife."
+L["help_ttt2_assassin_credit_bonus"] = "Amount of credits to award an Assassin when killing with the Assassin Knife."
 L["label_ttt2_assassin_target_awarditem"] = "Enable Random Weapon Reward"
-L["help_ttt2_assassin_target_awarditem"] = "Toggles giving a random Traitor weapon to an Assassin when killing their target with the backstab knife."
+L["help_ttt2_assassin_target_awarditem"] = "Toggles giving a random Traitor weapon to an Assassin when killing their target with the Assassin Knife."
