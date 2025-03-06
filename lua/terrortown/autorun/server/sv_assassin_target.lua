@@ -55,7 +55,7 @@ local function AssassinTargetDied(ply, attacker, dmgInfo)
 		local creditAmount = GetConVar("ttt2_assassin_credit_bonus"):GetInt()
 		if creditAmount > 0 then
 			attacker:AddCredits(creditAmount)
-			LANG.msg(attacker, "ttt2_assassin_target_killed_credits", {amount = creditAmount}, MSG_STACK_ROLE)
+			LANG.Msg(attacker, "ttt2_assassin_target_killed_credits", {amount = creditAmount}, MSG_STACK_ROLE)
 		end
 
 		if attacker:GetTargetPlayer() == ply then -- if attacker's target is the dead player
