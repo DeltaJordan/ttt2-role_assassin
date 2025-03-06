@@ -1,12 +1,12 @@
 if SERVER then
   AddCSLuaFile()
-  resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_shank.vmt")
+  resource.AddFile("materials/vgui/ttt/dynamic/roles/icon_ass.vmt")
 end
 
 function ROLE:PreInitialize()
   self.color = Color(209, 98, 90, 255)
 
-  self.abbr = "shank" -- abbreviation
+  self.abbr = "ass" -- abbreviation
   self.surviveBonus = 0 -- bonus multiplier for every survive while another player was killed
   self.scoreKillsMultiplier = 5 -- multiplier for kill of player of another team
   self.scoreTeamKillsMultiplier = -5 -- multiplier for teamkill
@@ -36,13 +36,11 @@ function ROLE:Initialize()
 end
 
 if SERVER then
-  
   function ROLE:GiveRoleLoadout(ply, isRoleChange)
-    ply:GiveEquipmentWeapon("weapon_ttt_shankknife")
+    ply:GiveEquipmentWeapon("weapon_ttt_assknife")
   end
 
   function ROLE:RemoveRoleLoadout(ply, isRoleChange)
-    ply:StripWeapon("weapon_ttt_shankknife")
+    ply:StripWeapon("weapon_ttt_assknife")
   end
-
 end

@@ -1,2 +1,2 @@
-# ttt2-role_shanker
- Shanker Role for TTT2
+# ttt2-role_assassin
+ Assassin Role for TTT2
