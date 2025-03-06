@@ -42,31 +42,41 @@ end
 local function AssassinTargetDied(ply, attacker, dmgInfo)
 	if GetRoundState() ~= ROUND_ACTIVE then return end
 	local wasTargetKill = false
+	local killingEntity = dmgInfo:GetWeapon()
 	if IsValid(attacker)
 		and attacker:IsPlayer()
 		and attacker:GetSubRole() == ROLE_ASSASSIN
-		and attacker:GetTargetPlayer()
 		and (not attacker.IsGhost or not attacker:IsGhost())
-		and attacker:GetTargetPlayer() == ply -- if attacker's target is the dead player
+		and killingEntity:IsWeapon()
+		and killingEntity:GetClass() == "weapon_ttt_assknife"
+		and attacker:IsActive()
 	then
-		wasTargetKill = true
-		local val = GetConVar("ttt2_assassin_target_awarditem"):GetBool()
-		if val and attacker:IsActive() then
-			local t_weapons = {}
-			local value = 0
-			for _, v in pairs(weapons.GetList()) do
-				if table.HasValue(v.CanBuy, ROLE_TRAITOR) then
-					table.insert(t_weapons, v.ClassName)
-					value = value + 1
+		local creditAmount = GetConVar("ttt2_assassin_credit_bonus"):GetInt()
+		if creditAmount > 0 then
+			attacker:AddCredits(creditAmount)
+			LANG.msg(attacker, "ttt2_assassin_target_killed_credits", {amount = creditAmount}, MSG_STACK_ROLE)
+		end
+
+		if attacker:GetTargetPlayer() == ply then -- if attacker's target is the dead player
+			wasTargetKill = true
+			local shouldAwardItem = GetConVar("ttt2_assassin_target_awarditem"):GetBool()
+			if shouldAwardItem then
+				local t_weapons = {}
+				local value = 0
+				for _, v in pairs(weapons.GetList()) do
+					if table.HasValue(v.CanBuy, ROLE_TRAITOR) then
+						table.insert(t_weapons, v.ClassName)
+						value = value + 1
+					end
 				end
+				local randwep = t_weapons[math.random(1, value)]
+				attacker:GiveEquipmentWeapon(randwep:GetClass())
+				LANG.Msg(attacker, "ttt2_assassin_target_killed_item", {
+					item = randwep:GetPrintName()
+				}, MSG_MSTACK_ROLE)
+			else
+				LANG.Msg(attacker, "ttt2_assassin_target_killed", nil, MSG_MSTACK_ROLE)
 			end
-			local randwep = t_weapons[math.random(1, value)]
-			attacker:GiveEquipmentWeapon(randwep:GetClass())
-			LANG.Msg(attacker, "ttt2_assassin_target_killed_item", {
-				item = randwep:GetPrintName()
-			}, MSG_MSTACK_ROLE)
-		else
-			LANG.Msg(attacker, "ttt2_assassin_target_killed", nil, MSG_MSTACK_ROLE)
 		end
 	end
 
