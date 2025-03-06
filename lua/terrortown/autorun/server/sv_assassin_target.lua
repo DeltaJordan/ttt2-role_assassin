@@ -66,14 +66,14 @@ local function AssassinTargetDied(ply, attacker, dmgInfo)
 				local value = 0
 				for _, v in pairs(weapons.GetList()) do
 					if table.HasValue(v.CanBuy, ROLE_TRAITOR) then
-						table.insert(t_weapons, v)
+						table.insert(t_weapons, v.ClassName)
 						value = value + 1
 					end
 				end
 				local randwep = t_weapons[math.random(1, value)]
-				attacker:GiveEquipmentWeapon(randwep.ClassName)
+				attacker:GiveEquipmentWeapon(randwep)
 				LANG.Msg(attacker, "ttt2_assassin_target_killed_item", {
-					item = randwep:GetPrintName()
+					item = randwep
 				}, MSG_MSTACK_ROLE)
 			else
 				LANG.Msg(attacker, "ttt2_assassin_target_killed", nil, MSG_MSTACK_ROLE)
