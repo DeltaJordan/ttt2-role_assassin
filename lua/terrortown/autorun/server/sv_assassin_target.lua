@@ -42,11 +42,12 @@ end
 local function AssassinTargetDied(ply, attacker, dmgInfo)
 	if GetRoundState() ~= ROUND_ACTIVE then return end
 	local wasTargetKill = false
-	local killingEntity = dmgInfo:GetWeapon()
+	local killingEntity = attacker:GetActiveWeapon()
 	if IsValid(attacker)
 		and attacker:IsPlayer()
 		and attacker:GetSubRole() == ROLE_ASSASSIN
 		and (not attacker.IsGhost or not attacker:IsGhost())
+		and IsValid(killingEntity)
 		and killingEntity:IsWeapon()
 		and killingEntity:GetClass() == "weapon_ttt_assknife"
 		and attacker:IsActive()
